@@ -1,0 +1,597 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>书桥南洋 · 文牵中马 - 华文批注式学习法数字教辅</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* 导航栏样式 */
+        header {
+            background-color: #1a5276;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #aed6f1;
+        }
+        
+        /* 主内容区样式 */
+        section {
+            padding: 4rem 0;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1920x800') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 6rem 0;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin: 0 0.5rem;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1a5276;
+            font-size: 2rem;
+        }
+        
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .feature {
+            flex: 1;
+            min-width: 250px;
+            margin: 1rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .feature i {
+            font-size: 2.5rem;
+            color: #1a5276;
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-table {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .pricing-plan {
+            background: white;
+            border-radius: 5px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+        }
+        
+        .price {
+            font-size: 2rem;
+            color: #e74c3c;
+            margin: 1rem 0;
+        }
+        
+        /* 步骤引导样式 */
+        .steps {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            margin: 1rem;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #1a5276;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background-color: #1a5276;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        /* AI客服样式 */
+        .ai-chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .chat-button {
+            background-color: #e74c3c;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            font-size: 1.5rem;
+        }
+        
+        .chat-window {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 300px;
+            height: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+        }
+        
+        .chat-header {
+            background: #1a5276;
+            color: white;
+            padding: 1rem;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        
+        .message {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-radius: 5px;
+            max-width: 80%;
+        }
+        
+        .bot-message {
+            background: #f1f1f1;
+            align-self: flex-start;
+        }
+        
+        .user-message {
+            background: #e3f2fd;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 0.5rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .chat-input button {
+            background: #1a5276;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin-left: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .features, .pricing-table, .steps {
+                flex-direction: column;
+            }
+            
+            .chat-window {
+                width: 280px;
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">书桥南洋 · 文牵中马</div>
+                <ul class="nav-links">
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#product">产品与理念</a></li>
+                    <li><a href="#start">如何开始</a></li>
+                    <li><a href="#service">服务与信任</a></li>
+                    <li><a href="#about">关于我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 首页/英雄区块 -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>以文字为桥，以方法为引</h1>
+            <p>来自中国的华文学习新方法，专为马来西亚华裔家庭设计的"批注式学习法"数字教辅</p>
+            <div>
+                <a href="#start" class="btn">立即免费试学</a>
+                <a href="#product" class="btn btn-secondary">前往网店购买</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心价值 -->
+    <section>
+        <div class="container">
+            <h2>解决马来西亚华小学生的学习痛点</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">"批注式学习法"专门针对马来西亚华小学生"会认不会用"，家长"想教不会教"的核心痛点设计</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <i>📚</i>
+                    <h3>极简符号体系</h3>
+                    <p>通过简单直观的符号系统，帮助学生快速掌握华文学习要点</p>
+                </div>
+                <div class="feature">
+                    <i>🌏</i>
+                    <h3>本土化内容适配</h3>
+                    <p>专为马来西亚华文教育环境定制，贴合本地教材和语境</p>
+                </div>
+                <div class="feature">
+                    <i>💡</i>
+                    <h3>双（多）语应急手册</h3>
+                    <p>提供多语言支持，解决学习过程中的语言障碍</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务承诺 -->
+    <section style="background-color: #e8f4f8;">
+        <div class="container">
+            <h2>我们的服务承诺</h2>
+            <div class="features">
+                <div class="feature">
+                    <i>⏱️</i>
+                    <h3>快速响应</h3>
+                    <p>12小时内响应，4小时内解决技术问题</p>
+                </div>
+                <div class="feature">
+                    <i>👨‍🏫</i>
+                    <h3>专业支持</h3>
+                    <p>华教人士提供专业教学支持</p>
+                </div>
+                <div class="feature">
+                    <i>🎯</i>
+                    <h3>免费体验</h3>
+                    <p>免费试学一个单元，满意再购买</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品与理念 -->
+    <section id="product">
+        <div class="container">
+            <h2>产品与理念</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">"批注式学习法"结合中国教育经验与马来西亚本地化需求，打造最适合华裔家庭的学习方案</p>
+            
+            <h3 style="text-align: left; margin: 2rem 0 1rem;">产品矩阵</h3>
+            <div class="pricing-table">
+                <div class="pricing-plan">
+                    <h4>华小1-2年级</h4>
+                    <div class="price">15-20 马币/分册</div>
+                    <p>基础华文识字与简单阅读</p>
+                </div>
+                <div class="pricing-plan">
+                    <h4>华小3-4年级</h4>
+                    <div class="price">15-20 马币/分册</div>
+                    <p>阅读理解和基础写作</p>
+                </div>
+                <div class="pricing-plan">
+                    <h4>华小5-6年级</h4>
+                    <div class="price">15-20 马币/分册</div>
+                    <p>综合能力提升与UPSR备考</p>
+                </div>
+                <div class="pricing-plan">
+                    <h4>全年套装</h4>
+                    <div class="price">80-100 马币/套装</div>
+                    <p>包含全年学习材料与资源</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 如何开始 -->
+    <section id="start" style="background-color: #f5f5f5;">
+        <div class="container">
+            <h2>如何开始</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>免费体验</h3>
+                    <p>获取"1个单元免费试学"资格，零风险体验批注式学习法</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>满意购买</h3>
+                    <p>选择适合年级的产品，通过官方网店完成购买</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>获得支持</h3>
+                    <p>加入学习社群，获得专业华教人士支持</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#" class="btn">立即免费试学</a>
+                <a href="#" class="btn btn-secondary" style="background-color: #1a5276; border-color: #1a5276;">前往官方网店</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务与信任 -->
+    <section id="service">
+        <div class="container">
+            <h2>我们的服务与信任</h2>
+            <div class="features">
+                <div class="feature">
+                    <i>🛡️</i>
+                    <h3>轻量级陪伴服务</h3>
+                    <p>12/4小时响应承诺，专业客服团队随时为您服务</p>
+                </div>
+                <div class="feature">
+                    <i>🤝</i>
+                    <h3>华教支持</h3>
+                    <p>与马来西亚华文教育专家合作，确保教学内容质量</p>
+                </div>
+                <div class="feature">
+                    <i>💬</i>
+                    <h3>反馈闭环</h3>
+                    <p>通过评价、私信收集建议，持续优化产品</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem; background: white; padding: 2rem; border-radius: 5px;">
+                <h3 style="text-align: center; margin-bottom: 1rem;">支付方式</h3>
+                <p style="text-align: center;">支持 Maybank, Touch'n Go, GrabPay 等本地支付方式，安全便捷</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们与愿景 -->
+    <section id="about" style="background-color: #e8f4f8;">
+        <div class="container">
+            <h2>关于我们与愿景</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">"书桥南洋"致力于搭建中马教育文化交流的桥梁，推动华文教育创新</p>
+            
+            <div style="max-width: 800px; margin: 0 auto;">
+                
+                <h3 style="margin: 2rem 0 1rem;">合作与背书</h3>
+                <p>与马来西亚董总、教总等教育机构保持密切合作，确保教学内容与本地教育体系契合</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <p>版权所有 &copy; 2025 书桥南洋 · 文牵中马 - 华文批注式学习法数字教辅</p>
+            <p>官方网站与唯一售卖渠道</p>
+        </div>
+    </footer>
+
+    <!-- AI客服 -->
+    <div class="ai-chatbot">
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <h3>小书 - 智能客服</h3>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    您好！我是"书桥南洋"的智能助手小书。我们专注为马来西亚华裔家庭提供"批注式学习法"数字教辅。请问有什么可以帮您？😊
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="请输入您的问题...">
+                <button id="sendButton">发送</button>
+            </div>
+        </div>
+        <div class="chat-button" id="chatButton">💬</div>
+    </div>
+
+    <script>
+        // AI客服交互功能
+        document.getElementById('chatButton').addEventListener('click', function() {
+            const chatWindow = document.getElementById('chatWindow');
+            if (chatWindow.style.display === 'flex') {
+                chatWindow.style.display = 'none';
+            } else {
+                chatWindow.style.display = 'flex';
+            }
+        });
+        
+        document.getElementById('sendButton').addEventListener('click', sendMessage);
+        document.getElementById('userInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        function sendMessage() {
+            const userInput = document.getElementById('userInput');
+            const message = userInput.value.trim();
+            
+            if (message === '') return;
+            
+            // 添加用户消息
+            const chatMessages = document.getElementById('chatMessages');
+            const userMessageDiv = document.createElement('div');
+            userMessageDiv.className = 'message user-message';
+            userMessageDiv.textContent = message;
+            chatMessages.appendChild(userMessageDiv);
+            
+            // 清空输入框
+            userInput.value = '';
+            
+            // 模拟AI回复（实际应用中应连接后端API）
+            setTimeout(function() {
+                const botMessageDiv = document.createElement('div');
+                botMessageDiv.className = 'message bot-message';
+                
+                // 简单的关键词回复逻辑（实际应用应使用更复杂的AI逻辑）
+                if (message.includes('批注式学习法') || message.includes('方法')) {
+                    botMessageDiv.textContent = '批注式学习法是我们专为马来西亚华小学生设计的华文学习方法，通过极简符号体系帮助学生更好地理解和运用华文。';
+                } else if (message.includes('价格') || message.includes('多少钱')) {
+                    botMessageDiv.textContent = '我们的产品按年级分册，每册15-20马币，全年套装80-100马币。您可以选择适合您孩子年级的产品。';
+                } else if (message.includes('试用') || message.includes('免费')) {
+                    botMessageDiv.textContent = '我们提供免费试学一个单元的机会，让您和孩子零风险体验批注式学习法。点击首页的"立即免费试学"按钮即可开始。';
+                } else if (message.includes('支付') || message.includes('购买')) {
+                    botMessageDiv.textContent = '您可以通过我们的官方网店购买，支持Maybank, Touch\'n Go等本地支付方式。购买后即可获得完整数字教辅资源。';
+                } else if (message.includes('客服') || message.includes('人工')) {
+                    botMessageDiv.textContent = '如果您的问题比较复杂，我可以为您转接人工客服。我们承诺在12小时内响应您的问题。';
+                } else {
+                    botMessageDiv.textContent = '抱歉，关于这个问题我没有查到相关信息，您可以咨询人工客服。';
+                }
+                
+                chatMessages.appendChild(botMessageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1000);
+            
+            // 滚动到底部
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    </script>
+</body>
+</html>
